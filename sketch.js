@@ -1,9 +1,7 @@
-
 var school = [];
 var meal = [];
 
 var LR = 1;
-
 
 inRange = function(num, min, max)
 {
@@ -38,7 +36,14 @@ function windowResized()
 
 function mousePressed()
 {
-    school.push(new Fish(mouseX, mouseY, randomInt(10, 20), randomInt(1,2), randomColor()));
+    if (inRange(mouseX, windowWidth - 200, windowWidth) & inRange(mouseY, windowHeight - 100, windowHeight))
+    {
+        meal.push(new Food(randomInt(20, width - 20), 0, 5));
+    }
+    else
+    {
+        school.push(new Fish(mouseX, mouseY, randomInt(10, 20), randomInt(1,2), randomColor()));
+    }
 }
 
 function keyPressed()
@@ -90,5 +95,10 @@ background('#282c34');
 		}
 		school[i].hunting = false;
 	}
-
+    
+    fill(0);
+    rect( windowWidth - 200, windowHeight - 100, 200, 100);   
+    textSize(65);
+    fill(255);
+    text("Food", windowWidth - 180, windowHeight - 80 , windowWidth - 20, windowHeight - 20);
 }
