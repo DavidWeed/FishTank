@@ -78,27 +78,30 @@ this.col = color;
 		}
 	};
 
+    
 	this.hunt = function(x, y)
 	{
 		if (y > this.y)
 		{
-			this.y += 20/this.size;
+			this.y += 15/this.size;
 		}
 		else if (y < this.y)
 		{
-			this.y -= 20/this.size;
+			this.y -= 15/this.size;
 		}
 
-		if (x > this.x)
+		if (x > this.x + this.size3)
 		{
-			this.x += 20/this.size;
+			this.x += 15/this.size;
 			this.drawRight();
 		}
-		else if (x < this.x)
+		else if (x < this.x - this.size3)
 		{
-			this.x -= 20/this.size;
+			this.x -= 15/this.size;
 			this.drawLeft();
 		}
+        
+        (this.dir == 1) ? this.drawRight() : this.drawLeft();
 
 		if (dist(x, y, this.x, this.y) <= this.size )
 		{
@@ -107,6 +110,7 @@ this.col = color;
 		}
 	};
 
+    
 	this.huntable = function(x, y, appeal)
 	{
 		if (inRange(this.x, x - appeal, x + appeal) && inRange(this.y, y - appeal, y + appeal))
